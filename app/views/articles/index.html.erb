@@ -28,6 +28,11 @@
         <td><%= link_to 'Show', article %></td>
         <td><%= link_to 'Edit', edit_article_path(article) %></td>
         <td><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if article.liked_by? current_user %>
+          <td><%= link_to 'いいね', article_likes_path(article), method: :post %></td>
+        <% else %>
+          <td><%= link_to 'いいね解除', article, method: :delete %></td>
+        <% end %>
         <td><%= render 'articles/tag_list', tag_list: article.interest_list %></td>
       </tr>
     <% end %>
